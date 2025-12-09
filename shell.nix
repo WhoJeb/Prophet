@@ -5,11 +5,11 @@
 pkgs.mkShell {
   # use “packages" instead of buildInputs
   packages = with pkgs; [
-    libGL # OpenGL library
-    libGLU # OpenGL Utility library
-    glfw # GLFW windowing library
-    glew # GLEW OpenGL Extension Wrangler
-    glm # OpenGL Maths Libraries
+    # libGL # OpenGL library
+    # libGLU # OpenGL Utility library
+    # glfw # GLFW windowing library
+    # glew # GLEW OpenGL Extension Wrangler
+    # glm # OpenGL Maths Libraries
     # Or glad, if preferred:
     # glad
     # sdl2 # SDL2 windowing library (alternative to GLFW)
