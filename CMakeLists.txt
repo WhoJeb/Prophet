@@ -3,8 +3,6 @@ cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(OpenGL_GL_PREFERENCE GLVND)
-
 # Set to true when shipping
 set(PRODUCTION_BUILD OFF CACHE BOOL "Make this a production build" FORCE)
 
@@ -27,8 +25,6 @@ add_executable("${CMAKE_PROJECT_NAME}")
 
 set_property(TARGET "${CMAKE_PROJECT_NAME}" PROPERTY CXX_STANDARD 17)
 
-target_compile_definitions("${CMAKE_PROJECT_NAME}" PUBLIC GLFW_INCLUDE_NONE=1)
-
 if(PRODUCTION_BUILD)
   # Setup the ASSETS_PATH macro to be in the root folder of your exe
   target_compile_definitions("${CMAKE_PROJECT_NAME}" PUBLIC RESOURCES_PATH="./resources/") 
@@ -42,32 +38,3 @@ else()
 endif()
 
 target_sources("${CMAKE_PROJECT_NAME}" PRIVATE ${MY_SOURCES} )
-
-find_package(OpenGL REQUIRED)
-# find_package(glfw 3.0 REQUIRED) # Or SDL2
-# find_package(GLEW REQUIRED) # Or GLAD
-find_package(PkgConfig REQUIRED)
-
-pkg_check_modules(GLFW REQUIRED glfw3)
-pkg_check_modules(GLEW REQUIRED glew)
-pkg_check_modules(GLM REQUIRED glm)
-
-
-target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    ${GLFW_INCLUDE_DIRS}
-    ${GLEW_INCLUDE_DIRS}
-    ${GLM_INCLUDE_DIRS}
-)
-
-target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
-    "${CMAKE_CURRENT_SOURCE_DIR}/include/"
-)
-
-target_link_libraries(${CMAKE_PROJECT_NAME}
-    OpenGL::GL
-    ${GLFW_LIBRARIES}
-    ${GLEW_LIBRARIES}
-    ${GLM_LIBRARIES}
-)
-
-# target_link_libraries(test OpenGL::GL glfw GLEW) # Or SDL2, GLAD
