@@ -29,7 +29,7 @@ pkgs.mkShell {
     export SHELL=${pkgs.zsh}/bin/zsh
     exec $SHELL
 
-    export LD_LIBRARY_PATH="/run/opengl-driver/lib:$LD_LIBRARY_PATH"
+    # export LD_LIBRARY_PATH="/run/opengl-driver/lib:$LD_LIBRARY_PATH"
     # For 32-bit support, if needed:
     # export LD_LIBRARY_PATH="/run/opengl-driver-32/lib:$LD_LIBRARY_PATH"
   '';
